@@ -1,6 +1,15 @@
 <template>
   <q-page class="constrain q-pa-md">
-    <q-card class="card-post" flat bordered>
+    
+    <div class="row q-col-gutter-lg">
+      <div class="col-8">
+        <q-card
+          v-for="post in posts"
+          :key="post.id"
+          bordered
+          class="card-post q-mb-md"
+          flat
+    >
       <q-item>
         <q-item-section avatar>
           <q-avatar>
@@ -11,7 +20,7 @@
         <q-item-section>
           <q-item-label class="text-bold">allan__reid</q-item-label>
           <q-item-label caption>
-            San Francisco, United States
+            {{ post.location }}
           </q-item-label>
         </q-item-section>
       </q-item>
@@ -19,21 +28,82 @@
       <q-separator />
 
       <q-img
-        src="https://cdn.quasar.dev/img/parallax2.jpg"
+        :src="post.imageUrl"
       />
 
       <q-card-section>
-        <div>Golden Gate Bridge</div>
-        <div class="text-caption text-grey">June 10 9:04 a.m.</div>
+        <div>{{ post.caption }}</div>
+        <div class="text-caption text-grey">{{ post.date | niceDate }}</div>
       </q-card-section>
 
     </q-card>
+      </div>
+      <div class="col-4">
+        <q-item class="fixed">
+        <q-item-section avatar>
+          <q-avatar size="48px">
+            <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+          </q-avatar>
+        </q-item-section>
+
+        <q-item-section>
+          <q-item-label class="text-bold">allan__reid</q-item-label>
+          <q-item-label caption>
+            AllanMan
+          </q-item-label>
+        </q-item-section>
+      </q-item>
+      </div>
+    </div>
+
+    
   </q-page>
 </template>
 
 <script>
+import { date } from 'quasar'
+
 export default {
-  name: 'PageHome'
+  name: 'PageHome',
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          caption: 'Golden Gate Bridge',
+          date: 1617036520918,
+          location: 'San Francisco, United States',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+        {
+          id: 2,
+          caption: 'Golden Gate Bridge',
+          date: 1617036520918,
+          location: 'San Francisco, United States',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+        {
+          id: 3,
+          caption: 'Golden Gate Bridge',
+          date: 1617036520918,
+          location: 'San Francisco, United States',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        },
+        {
+          id: 4,
+          caption: 'Golden Gate Bridge',
+          date: 1617036520918,
+          location: 'San Francisco, United States',
+          imageUrl: 'https://cdn.quasar.dev/img/parallax2.jpg'
+        }
+      ]
+    }
+  },
+  filters: {
+    niceDate(value) {
+      return date.formatDate(value, 'MMMM D h:mmA')
+    }
+  }
 }
 </script>
 
