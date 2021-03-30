@@ -1,5 +1,6 @@
 {
   
   "vetur.experimental.templateInterpolationService": true,
-  "editor.fontSize": 16
+  "editor.fontSize": 16,
+  "workbench.colorTheme": "Vue Theme"
 }
